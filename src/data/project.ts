@@ -3,7 +3,7 @@
  * değişirse yalnızca bu dosya güncellenir.
  */
 
-export const SITE_URL = 'https://www.thepearlofyalova.com.tr';
+export const SITE_URL = 'https://www.thepearlofyalova.com';
 
 export const BRAND = {
   name: 'The Pearl of Yalova',
