@@ -82,6 +82,11 @@ doldurmadan `npm run check` geçmez. Bu kasıtlıdır, dillerin ayrışmasını 
 Depo Vercel'e bağlandığında ek ayar gerekmez; `vercel.json` önbellek ve güvenlik
 başlıklarını tanımlar. Framework algılaması Astro'yu bulur, çıktı `dist/` klasörüdür.
 
+`vercel.json` ayrıca eski `.html` adreslerinden yeni sayfalara 42 kalıcı (301)
+yönlendirme tanımlar — `thepearlofyalova.html`, 90 kat planı sayfası, eski dil
+klasörleri ve PDF dahil. Bu, barındırma değişirken arama motoru sıralamalarının
+ve dış bağlantıların korunması içindir.
+
 Alan adı bağlandıktan sonra `src/data/project.ts` ve `astro.config.mjs` içindeki
 `SITE_URL` değerinin gerçek alan adıyla eşleştiğini doğrulayın — canonical etiketler,
 hreflang bağlantıları ve `sitemap.xml` bu değerden üretilir.

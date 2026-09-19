@@ -5,20 +5,254 @@
   "headers": [
     {
       "source": "/media/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/_astro/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/default.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index-1.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index-wcopy.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/thepearlofyalova.html",
+      "destination": "/proje",
+      "permanent": true
+    },
+    {
+      "source": "/thepearlofyalova-1.html",
+      "destination": "/proje",
+      "permanent": true
+    },
+    {
+      "source": "/eksioglueksa.html",
+      "destination": "/hakkimizda",
+      "permanent": true
+    },
+    {
+      "source": "/iletisim.html",
+      "destination": "/iletisim",
+      "permanent": true
+    },
+    {
+      "source": "/satis-ofisi.html",
+      "destination": "/iletisim",
+      "permanent": true
+    },
+    {
+      "source": "/konum.html",
+      "destination": "/konum",
+      "permanent": true
+    },
+    {
+      "source": "/yalova.html",
+      "destination": "/konum",
+      "permanent": true
+    },
+    {
+      "source": "/dis-mekan.html",
+      "destination": "/galeri",
+      "permanent": true
+    },
+    {
+      "source": "/ic-mekan.html",
+      "destination": "/galeri",
+      "permanent": true
+    },
+    {
+      "source": "/video.html",
+      "destination": "/galeri",
+      "permanent": true
+    },
+    {
+      "source": "/video-mob.html",
+      "destination": "/galeri",
+      "permanent": true
+    },
+    {
+      "source": "/videoEn.html",
+      "destination": "/en/gallery",
+      "permanent": true
+    },
+    {
+      "source": "/videoAr.html",
+      "destination": "/ar/gallery",
+      "permanent": true
+    },
+    {
+      "source": "/aktivite.html",
+      "destination": "/yasam",
+      "permanent": true
+    },
+    {
+      "source": "/aktivite2.html",
+      "destination": "/yasam",
+      "permanent": true
+    },
+    {
+      "source": "/kat-plani.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/kat.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/katplani1_1a.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/vaziyet-plani.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/a1.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/a2.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/a3.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/d-3.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/d-4.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/d-5.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/d-6.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/d-7.html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/:block(a|b|c)_:rest(.*).html",
+      "destination": "/daireler",
+      "permanent": true
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/ru/:path*",
+      "destination": "/ru",
+      "permanent": true
+    },
+    {
+      "source": "/ar/:path*",
+      "destination": "/ar",
+      "permanent": true
+    },
+    {
+      "source": "/thepearlofyalova-tr.pdf",
+      "destination": "/katalog/thepearlofyalova-tr.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/pdf/:path*",
+      "destination": "/katalog/thepearlofyalova-tr.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/sanal-tur/:path*",
+      "destination": "/galeri#sanal-tur",
+      "permanent": true
+    },
+    {
+      "source": "/thepearlofyalova_KucukDaire_360/:path*",
+      "destination": "/galeri#sanal-tur",
+      "permanent": true
+    },
+    {
+      "source": "/thepearlofyalova_BuyukDaire_360/:path*",
+      "destination": "/galeri#sanal-tur",
+      "permanent": true
+    },
+    {
+      "source": "/mail.php",
+      "destination": "/iletisim",
+      "permanent": true
+    },
+    {
+      "source": "/form.htm",
+      "destination": "/iletisim",
+      "permanent": true
     }
   ]
 }
