@@ -9,7 +9,7 @@ export const BRAND = {
   name: 'The Pearl of Yalova',
   tagline: "Yalova'nın İncisi",
   developer: 'Ekşioğlu EKSA İnşaat',
-  developerUrl: 'https://www.eksioglueksa.com',
+  developerUrl: 'https://eksioglueksa.com.tr',
 } as const;
 
 export const CONTACT = {
