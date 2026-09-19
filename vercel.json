@@ -1,6 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
     {
@@ -200,22 +199,22 @@
       "permanent": true
     },
     {
-      "source": "/:block(a|b|c)_:rest(.*).html",
+      "source": "/:plan([abc]_.*\\.html)",
       "destination": "/daireler",
       "permanent": true
     },
     {
-      "source": "/en/:path*",
+      "source": "/en/:legacy(.*\\.html)",
       "destination": "/en",
       "permanent": true
     },
     {
-      "source": "/ru/:path*",
+      "source": "/ru/:legacy(.*\\.html)",
       "destination": "/ru",
       "permanent": true
     },
     {
-      "source": "/ar/:path*",
+      "source": "/ar/:legacy(.*\\.html)",
       "destination": "/ar",
       "permanent": true
     },
