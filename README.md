@@ -102,3 +102,12 @@ hreflang bağlantıları ve `sitemap.xml` bu değerden üretilir.
 - **Pano2VR tur motoru** — `javascript/load.js` kaynakta 0 bayt olduğu için turlar
   eski sitede de açılmıyordu. Panorama karoları küp yüzlerine birleştirilip
   Pannellum ile yeniden yayınlandı.
+
+## Telif
+
+Depodaki **kod** serbestçe incelenebilir ve örnek alınabilir.
+
+`public/media/`, `public/tours/` ve `public/katalog/` altındaki görseller, 360°
+panoramalar, mimari planlar ve tanıtım kataloğu **Ekşioğlu EKSA İnşaat'a aittir**
+ve yalnızca bu proje için kullanılabilir. "The Pearl of Yalova" adı ve amblemi
+şirketin markasıdır. Bu varlıkları izinsiz başka bir işte kullanmayın.
