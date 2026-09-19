@@ -1,0 +1,170 @@
+---
+import ResponsiveImage from './ResponsiveImage.astro';
+import { getMedia, largestSrc } from '../lib/media';
+import { getDictionary } from '../i18n';
+import type { Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  groups: readonly { id: string; label: string; keys: readonly string[] }[];
+}
+
+const { locale, groups } = Astro.props;
+const dict = getDictionary(locale);
+---
+
+<div data-gallery>
+  {
+    groups.length > 1 && (
+      <div role="tablist" class="mb-10 flex flex-wrap gap-2">
+        {groups.map((group, index) => (
+          <button
+            type="button"
+            role="tab"
+            data-gallery-tab={group.id}
+            aria-selected={index === 0 ? 'true' : 'false'}
+            class="rounded-full border border-deep/20 px-5 py-2.5 text-sm font-medium text-muted transition-colors aria-selected:border-deep aria-selected:bg-deep aria-selected:text-canvas"
+          >
+            {group.label}
+          </button>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    groups.map((group, groupIndex) => (
+      <div
+        data-gallery-panel={group.id}
+        hidden={groupIndex !== 0}
+        class="columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4"
+      >
+        {group.keys.map((key, index) => (
+          <button
+            type="button"
+            data-gallery-item
+            data-full={largestSrc(getMedia(key))}
+            data-caption={dict.media[key] ?? ''}
+            class="group relative block w-full overflow-hidden rounded-sm bg-sand break-inside-avoid"
+          >
+            <ResponsiveImage
+              media={key}
+              alt={dict.media[key] ?? ''}
+              sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 92vw"
+              loading={groupIndex === 0 && index < 3 ? 'eager' : 'lazy'}
+              class="transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-[1.04]"
+            />
+            <span class="absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/15" />
+            <span class="sr-only">{dict.actions.enlarge}</span>
+          </button>
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<dialog
+  data-lightbox
+  class="m-0 h-dvh max-h-none w-dvw max-w-none bg-ink/95 p-0 backdrop:bg-ink/80"
+  aria-label={dict.actions.enlarge}
+>
+  <div class="relative flex h-full w-full flex-col">
+    <button
+      type="button"
+      data-lightbox-close
+      class="absolute end-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-canvas/25 text-canvas transition-colors hover:bg-canvas hover:text-ink"
+    >
+      <span class="sr-only">{dict.actions.close}</span>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5"></path>
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      data-lightbox-prev
+      class="absolute start-2 top-1/2 z-10 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full text-canvas/70 transition-colors hover:bg-canvas/10 hover:text-canvas sm:start-5"
+    >
+      <span class="sr-only">{dict.actions.previous}</span>
+      <svg width="12" height="20" viewBox="0 0 12 20" fill="none" aria-hidden="true" class="flip-rtl">
+        <path d="M11 1L2 10l9 9" stroke="currentColor" stroke-width="1.5"></path>
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      data-lightbox-next
+      class="absolute end-2 top-1/2 z-10 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full text-canvas/70 transition-colors hover:bg-canvas/10 hover:text-canvas sm:end-5"
+    >
+      <span class="sr-only">{dict.actions.next}</span>
+      <svg width="12" height="20" viewBox="0 0 12 20" fill="none" aria-hidden="true" class="flip-rtl">
+        <path d="M1 1l9 9-9 9" stroke="currentColor" stroke-width="1.5"></path>
+      </svg>
+    </button>
+
+    <figure class="flex h-full w-full flex-col items-center justify-center gap-4 p-4 sm:p-10">
+      <img data-lightbox-image src="" alt="" class="max-h-[80vh] w-auto max-w-full object-contain" />
+      <figcaption data-lightbox-caption class="max-w-2xl text-center text-sm text-canvas/60"></figcaption>
+    </figure>
+  </div>
+</dialog>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-gallery]');
+  const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  const image = dialog?.querySelector<HTMLImageElement>('[data-lightbox-image]');
+  const caption = dialog?.querySelector<HTMLElement>('[data-lightbox-caption]');
+
+  if (root && dialog && image && caption) {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-gallery-tab]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-gallery-panel]')];
+
+    const selectGroup = (id: string) => {
+      for (const tab of tabs) tab.setAttribute('aria-selected', String(tab.dataset.galleryTab === id));
+      for (const panel of panels) panel.hidden = panel.dataset.galleryPanel !== id;
+    };
+
+    for (const tab of tabs) {
+      tab.addEventListener('click', () => selectGroup(tab.dataset.galleryTab ?? ''));
+    }
+
+    /** Işık kutusu yalnızca görünür paneldeki görseller arasında gezer. */
+    const visibleItems = (): HTMLButtonElement[] => {
+      const panel = panels.find((candidate) => !candidate.hidden) ?? panels[0];
+      return [...(panel?.querySelectorAll<HTMLButtonElement>('[data-gallery-item]') ?? [])];
+    };
+
+    let index = 0;
+
+    const show = (next: number) => {
+      const items = visibleItems();
+      if (items.length === 0) return;
+      index = (next + items.length) % items.length;
+      const item = items[index];
+      image.src = item.dataset.full ?? '';
+      image.alt = item.dataset.caption ?? '';
+      caption.textContent = item.dataset.caption ?? '';
+    };
+
+    root.addEventListener('click', (event) => {
+      const item = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-gallery-item]');
+      if (!item) return;
+      show(visibleItems().indexOf(item));
+      dialog.showModal();
+    });
+
+    dialog.querySelector('[data-lightbox-close]')?.addEventListener('click', () => dialog.close());
+    dialog.querySelector('[data-lightbox-prev]')?.addEventListener('click', () => show(index - 1));
+    dialog.querySelector('[data-lightbox-next]')?.addEventListener('click', () => show(index + 1));
+
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') show(index + 1);
+      if (event.key === 'ArrowLeft') show(index - 1);
+    });
+
+    /** Görselin dışına tıklayınca kapat. */
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+</script>

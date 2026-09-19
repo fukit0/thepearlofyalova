@@ -1,0 +1,181 @@
+---
+import Hero from '../Hero.astro';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import StatBand from '../StatBand.astro';
+import Button from '../Button.astro';
+import ResponsiveImage from '../ResponsiveImage.astro';
+import { getDictionary, pathFor } from '../../i18n';
+import type { Locale } from '../../i18n';
+import { CONTACT, MEASUREMENTS } from '../../data/project';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const home = dict.home;
+
+const TEASER_IMAGES = ['exterior/pool', 'interior/living-grey', 'exterior/garden-path', 'interior/kitchen'] as const;
+---
+
+<Hero
+  media="exterior/aerial-dusk"
+  alt={dict.media['exterior/aerial-dusk']}
+  eyebrow={home.heroEyebrow}
+  title={home.heroTitle}
+  lede={home.heroLede}
+  size="full"
+  scrollHint={home.scrollHint}
+>
+  <Button href={pathFor('residences', locale)} variant="light">{dict.actions.viewPlans}</Button>
+  <Button href={CONTACT.whatsappHref} variant="outline-light" external>{dict.actions.whatsapp}</Button>
+</Hero>
+
+<StatBand stats={home.stats} />
+
+<Section>
+  <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+    <div class="reveal order-2 lg:order-1">
+      <p class="eyebrow">{home.introEyebrow}</p>
+      <h2 class="mt-5 text-3xl leading-[1.15] sm:text-4xl">{home.introTitle}</h2>
+      {home.introBody.map((paragraph) => <p class="prose-lede mt-5">{paragraph}</p>)}
+      <div class="mt-8">
+        <Button href={pathFor('project', locale)} variant="ghost">{dict.actions.exploreProject}</Button>
+      </div>
+    </div>
+    <div class="reveal relative order-1 aspect-4/5 overflow-hidden rounded-sm lg:order-2">
+      <ResponsiveImage
+        media="exterior/aerial-sunset"
+        alt={dict.media['exterior/aerial-sunset']}
+        sizes="(min-width:1024px) 45vw, 92vw"
+        fill
+      />
+    </div>
+  </div>
+</Section>
+
+<Section tone="sand">
+  <SectionHeading eyebrow={home.featuresEyebrow} title={home.featuresTitle} />
+  <ul class="mt-14 grid gap-px bg-sand-300/70 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      home.features.map((feature) => (
+        <li class="reveal flex flex-col gap-3 bg-sand/50 p-8 transition-colors duration-500 hover:bg-canvas">
+          <h3 class="text-xl text-deep">{feature.title}</h3>
+          <p class="text-sm leading-relaxed text-muted">{feature.body}</p>
+        </li>
+      ))
+    }
+  </ul>
+</Section>
+
+<Section tone="deep">
+  <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+    <SectionHeading
+      eyebrow={home.measureEyebrow}
+      title={home.measureTitle}
+      lede={home.measureLede}
+      tone="light"
+    />
+    <dl class="reveal grid gap-px bg-canvas/12 sm:grid-cols-2">
+      <div class="flex flex-col gap-2 bg-deep p-8">
+        <dt class="text-[0.6875rem] font-semibold tracking-[0.18em] text-canvas/50 uppercase">
+          {home.airLabel}
+        </dt>
+        <dd class="font-[family-name:var(--font-display)] text-4xl text-gold-300">
+          {MEASUREMENTS.pm25.value}
+          <span class="ms-1 text-base text-canvas/60">{MEASUREMENTS.pm25.unit}</span>
+        </dd>
+        <p class="mt-2 text-xs leading-relaxed text-canvas/55">{home.airNote}</p>
+      </div>
+      <div class="flex flex-col gap-2 bg-deep p-8">
+        <dt class="text-[0.6875rem] font-semibold tracking-[0.18em] text-canvas/50 uppercase">
+          {home.noiseLabel}
+        </dt>
+        <dd class="font-[family-name:var(--font-display)] text-4xl text-gold-300">
+          {MEASUREMENTS.noise.value}
+          <span class="ms-1 text-base text-canvas/60">{MEASUREMENTS.noise.unit}</span>
+        </dd>
+        <p class="mt-2 text-xs leading-relaxed text-canvas/55">{home.noiseNote}</p>
+      </div>
+    </dl>
+  </div>
+</Section>
+
+<Section>
+  <SectionHeading eyebrow={home.galleryEyebrow} title={home.galleryTitle} lede={home.galleryLede} />
+  <div class="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+    {
+      TEASER_IMAGES.map((key) => (
+        <a
+          href={pathFor('gallery', locale)}
+          class="reveal group relative aspect-3/4 overflow-hidden rounded-sm bg-sand"
+        >
+          <ResponsiveImage
+            media={key}
+            alt={dict.media[key]}
+            sizes="(min-width:1024px) 24vw, 46vw"
+            fill
+            class="transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105"
+          />
+        </a>
+      ))
+    }
+  </div>
+  <div class="mt-10">
+    <Button href={pathFor('gallery', locale)} variant="ghost">{dict.actions.viewGallery}</Button>
+  </div>
+</Section>
+
+<Section tone="sand">
+  <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+    <div class="reveal relative overflow-hidden rounded-sm border border-sand-300 bg-white p-4 sm:p-8">
+      <ResponsiveImage
+        media="siteplan/vaziyet"
+        alt={dict.media['siteplan/vaziyet']}
+        sizes="(min-width:1024px) 50vw, 92vw"
+      />
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">{home.plansEyebrow}</p>
+      <h2 class="mt-5 text-3xl leading-[1.15] sm:text-4xl">{home.plansTitle}</h2>
+      <p class="prose-lede mt-5">{home.plansLede}</p>
+      <div class="mt-8">
+        <Button href={pathFor('residences', locale)}>{dict.actions.viewPlans}</Button>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<Section>
+  <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+    <div class="reveal">
+      <p class="eyebrow">{home.locationEyebrow}</p>
+      <h2 class="mt-5 text-3xl leading-[1.15] sm:text-4xl">{home.locationTitle}</h2>
+      <p class="prose-lede mt-5">{home.locationLede}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Button href={pathFor('location', locale)} variant="ghost">{dict.nav.location}</Button>
+        <Button href={CONTACT.site.mapsUrl} variant="ghost" external>{dict.actions.directions}</Button>
+      </div>
+    </div>
+    <div class="reveal overflow-hidden rounded-sm border border-sand-300 bg-white p-4">
+      <ResponsiveImage
+        media="map/ulasim"
+        alt={dict.media['map/ulasim']}
+        sizes="(min-width:1024px) 45vw, 92vw"
+      />
+    </div>
+  </div>
+</Section>
+
+<Section tone="deep" width="narrow">
+  <div class="reveal flex flex-col items-center gap-6 text-center">
+    <h2 class="text-3xl text-canvas sm:text-4xl">{home.ctaTitle}</h2>
+    <p class="prose-lede text-canvas/70">{home.ctaLede}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <Button href={CONTACT.whatsappHref} variant="light" external>{dict.actions.whatsapp}</Button>
+      <Button href={CONTACT.phoneHref} variant="outline-light">{CONTACT.phoneDisplay}</Button>
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,44 @@
+---
+import { getDictionary } from '../i18n';
+import type { Locale } from '../i18n';
+import { CONTACT } from '../data/project';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+---
+
+<!-- Mobilde alt çubuk, masaüstünde sağ alt köşede yüzen WhatsApp butonu. -->
+<div class="pointer-events-none fixed inset-x-0 bottom-0 z-40 sm:inset-x-auto sm:end-6 sm:bottom-6">
+  <div
+    class="pointer-events-auto flex items-stretch gap-px bg-deep/10 backdrop-blur-sm sm:gap-3 sm:bg-transparent sm:backdrop-blur-none"
+  >
+    <a
+      href={CONTACT.phoneHref}
+      class="flex flex-1 items-center justify-center gap-2 bg-deep px-4 py-3.5 text-sm font-medium text-canvas sm:hidden"
+    >
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path
+          d="M3.7 1a1.4 1.4 0 0 1 1.2.7l1 1.7a1.4 1.4 0 0 1-.2 1.7l-.7.7a9 9 0 0 0 4.2 4.2l.7-.7a1.4 1.4 0 0 1 1.7-.2l1.7 1a1.4 1.4 0 0 1 .5 1.9l-.8 1.3a1.9 1.9 0 0 1-2.2.8C7.4 13 3 8.6 1.9 5.2a1.9 1.9 0 0 1 .8-2.2L4 1.2A1.4 1.4 0 0 1 3.7 1Z"
+        ></path>
+      </svg>
+      {dict.actions.call}
+    </a>
+    <a
+      href={CONTACT.whatsappHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex flex-1 items-center justify-center gap-2 bg-[#128C7E] px-4 py-3.5 text-sm font-medium text-white transition-transform sm:flex-none sm:rounded-full sm:px-5 sm:py-4 sm:shadow-lg sm:shadow-ink/20 sm:hover:-translate-y-0.5"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6a11.4 11.4 0 0 1-4.4-4c-.3-.5-.7-1.2-.7-2.2s.5-1.5.7-1.7c.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .5.4l.7 1.7c.1.1.1.3 0 .5l-.3.4-.3.3c-.1.1-.2.3-.1.5.2.4.7 1.2 1.4 1.8.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.6-.7c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 .9Z"
+        ></path>
+      </svg>
+      <span class="sm:sr-only lg:not-sr-only">{dict.actions.whatsapp}</span>
+    </a>
+  </div>
+</div>

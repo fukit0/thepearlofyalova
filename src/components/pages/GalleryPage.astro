@@ -1,0 +1,69 @@
+---
+import Hero from '../Hero.astro';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import Gallery from '../Gallery.astro';
+import PanoramaTour from '../PanoramaTour.astro';
+import { getDictionary } from '../../i18n';
+import type { Locale } from '../../i18n';
+import { keysByPrefix } from '../../lib/media';
+import { TOUR_IDS } from '../../lib/tours';
+import { MEDIA_LINKS } from '../../data/project';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const gallery = dict.gallery;
+
+const groups = [
+  { id: 'exterior', label: gallery.tabExterior, keys: keysByPrefix('exterior') },
+  { id: 'interior', label: gallery.tabInterior, keys: keysByPrefix('interior') },
+];
+---
+
+<Hero
+  media="exterior/pool"
+  alt={dict.media['exterior/pool']}
+  eyebrow={gallery.heroEyebrow}
+  title={gallery.heroTitle}
+  lede={gallery.heroLede}
+/>
+
+<Section width="wide">
+  <Gallery locale={locale} groups={groups} />
+</Section>
+
+<Section tone="sand" width="wide" id="sanal-tur">
+  <SectionHeading title={gallery.tourTitle} lede={gallery.tourLede} />
+  <div class="mt-12 flex flex-col gap-16">
+    {
+      TOUR_IDS.map((tourId) => (
+        <div class="flex flex-col gap-5">
+          <h3 class="text-xl text-deep">{dict.tourScenes[tourId] ?? tourId}</h3>
+          <PanoramaTour locale={locale} tourId={tourId} />
+        </div>
+      ))
+    }
+  </div>
+</Section>
+
+{
+  MEDIA_LINKS.youtubeId && (
+    <Section>
+      <SectionHeading title={gallery.videoTitle} lede={gallery.videoLede} />
+      <div class="reveal mt-10 aspect-video overflow-hidden rounded-sm bg-ink">
+        <iframe
+          class="h-full w-full"
+          src={`https://www.youtube-nocookie.com/embed/${MEDIA_LINKS.youtubeId}`}
+          title={gallery.videoTitle}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        />
+      </div>
+    </Section>
+  )
+}

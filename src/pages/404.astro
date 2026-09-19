@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+import Button from '../components/Button.astro';
+import { DEFAULT_LOCALE, getDictionary, pathFor } from '../i18n';
+
+/**
+ * Tek dilli 404: hangi dilde olunduğu statik olarak bilinemez,
+ * bu yüzden varsayılan dil kullanılır ve dört dile de bağlantı verilir.
+ */
+const dict = getDictionary(DEFAULT_LOCALE);
+---
+
+<!doctype html>
+<html lang={dict.meta.htmlLang} dir={dict.meta.dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>404 · The Pearl of Yalova</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="flex min-h-dvh flex-col items-center justify-center gap-8 bg-deep px-6 text-center">
+    <Logo tone="light" />
+    <div class="flex flex-col gap-3">
+      <p class="font-[family-name:var(--font-display)] text-6xl text-gold-300">404</p>
+      <p class="text-canvas/70">Aradığınız sayfa bulunamadı · Page not found</p>
+    </div>
+    <Button href={pathFor('home', DEFAULT_LOCALE)} variant="light">{dict.nav.home}</Button>
+  </body>
+</html>

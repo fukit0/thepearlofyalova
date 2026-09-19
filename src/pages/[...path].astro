@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomePage from '../components/pages/HomePage.astro';
+import ProjectPage from '../components/pages/ProjectPage.astro';
+import ResidencesPage from '../components/pages/ResidencesPage.astro';
+import GalleryPage from '../components/pages/GalleryPage.astro';
+import LifestylePage from '../components/pages/LifestylePage.astro';
+import LocationPage from '../components/pages/LocationPage.astro';
+import AboutPage from '../components/pages/AboutPage.astro';
+import ContactPage from '../components/pages/ContactPage.astro';
+import { DEFAULT_LOCALE, LOCALES, PAGE_KEYS, paramFor } from '../i18n';
+import type { Locale, PageKey } from '../i18n';
+
+/** Her sayfa bileşeni ve o sayfanın LCP görseli tek yerde toplanır. */
+const PAGES = {
+  home: { component: HomePage, hero: 'exterior/aerial-dusk' },
+  project: { component: ProjectPage, hero: 'exterior/aerial-blocks' },
+  residences: { component: ResidencesPage, hero: 'exterior/facade-front' },
+  gallery: { component: GalleryPage, hero: 'exterior/pool' },
+  lifestyle: { component: LifestylePage, hero: 'exterior/pool-deck' },
+  location: { component: LocationPage, hero: 'exterior/aerial-top' },
+  about: { component: AboutPage, hero: 'exterior/facade-corner' },
+  contact: { component: ContactPage, hero: 'exterior/entrance-door' },
+} as const;
+
+export const getStaticPaths = () =>
+  LOCALES.flatMap((locale) =>
+    PAGE_KEYS.map((page) => ({
+      params: { path: paramFor(page, locale, DEFAULT_LOCALE) },
+      props: { locale, page },
+    })),
+  );
+
+interface Props {
+  locale: Locale;
+  page: PageKey;
+}
+
+const { locale, page } = Astro.props;
+const { component: PageComponent, hero } = PAGES[page];
+---
+
+<BaseLayout locale={locale} page={page} heroMedia={hero}>
+  <PageComponent locale={locale} />
+</BaseLayout>

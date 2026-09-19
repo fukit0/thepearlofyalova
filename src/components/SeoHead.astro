@@ -1,0 +1,84 @@
+---
+import { alternatesFor, DEFAULT_LOCALE, getDictionary } from '../i18n';
+import type { Locale, PageKey } from '../i18n';
+import { getMedia, srcAt } from '../lib/media';
+import { BRAND, CONTACT, SITE_URL } from '../data/project';
+
+interface Props {
+  locale: Locale;
+  page: PageKey;
+  /** LCP görselinin manifest anahtarı — preload edilir. */
+  heroMedia?: string;
+}
+
+const { locale, page, heroMedia } = Astro.props;
+const dict = getDictionary(locale);
+const seo = dict.seo[page];
+const alternates = alternatesFor(page);
+const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+const shareImage = new URL(srcAt(getMedia('exterior/aerial-dusk'), 1200), SITE_URL).href;
+const heroEntry = heroMedia ? getMedia(heroMedia) : null;
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'RealEstateListing',
+  name: BRAND.name,
+  description: seo.description,
+  url: canonical,
+  image: shareImage,
+  inLanguage: dict.meta.htmlLang,
+  provider: {
+    '@type': 'Organization',
+    name: BRAND.developer,
+    url: BRAND.developerUrl,
+    telephone: CONTACT.phoneHref.replace('tel:', ''),
+    email: CONTACT.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: CONTACT.office.lines[0],
+      addressLocality: 'İstanbul',
+      addressCountry: 'TR',
+    },
+  },
+  containedInPlace: {
+    '@type': 'Place',
+    name: 'Teşvikiye, Çınarcık, Yalova',
+    address: { '@type': 'PostalAddress', addressRegion: 'Yalova', addressCountry: 'TR' },
+  },
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{seo.title}</title>
+<meta name="description" content={seo.description} />
+<link rel="canonical" href={canonical} />
+
+{
+  alternates.map(({ locale: alt, path }) => (
+    <link rel="alternate" hreflang={alt} href={new URL(path, SITE_URL).href} />
+  ))
+}
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={new URL(alternates.find((item) => item.locale === DEFAULT_LOCALE)!.path, SITE_URL).href}
+/>
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={BRAND.name} />
+<meta property="og:title" content={seo.title} />
+<meta property="og:description" content={seo.description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={shareImage} />
+<meta property="og:locale" content={dict.meta.ogLocale} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#0f3d3e" />
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+{heroEntry && <link rel="preload" as="image" href={srcAt(heroEntry, 1920)} imagesrcset={heroEntry.widths.map((w) => `${heroEntry.base}-${w}.webp ${w}w`).join(', ')} imagesizes="100vw" fetchpriority="high" />}
+
+<script type="application/ld+json" set:html={JSON.stringify(organization)} is:inline />

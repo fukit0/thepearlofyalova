@@ -1,0 +1,149 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/inter/index.css';
+@import '@fontsource-variable/source-serif-4/index.css';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/600.css';
+
+/* ---------------------------------------------------------------------------
+   Tasarım jetonları — Marmara kıyısının derin turkuazı + kum/altın vurgu.
+   Renderlardaki açık gri cepheler ve yeşil peyzajla uyumlu olacak şekilde seçildi.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-ink: #0d1c1b;
+  --color-deep: #0f3d3e;
+  --color-deep-700: #16514f;
+  --color-sea: #1d6b67;
+  --color-sea-400: #3f918c;
+  --color-canvas: #faf8f4;
+  --color-sand: #ece5d8;
+  --color-sand-300: #dbd0bd;
+  --color-gold: #ab8140;
+  --color-gold-300: #d2b177;
+  --color-muted: #5f6b69;
+
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Source Serif 4 Variable', 'Inter Variable', ui-serif, Georgia, serif;
+
+  --spacing-section: 6rem;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Arapça: serif başlıklarda Latin fontu düşer, Plex Arabic her ikisini de karşılar. */
+:root:lang(ar),
+[dir='rtl'] {
+  --font-sans: 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-300);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /* Bölüm başlıklarının üstündeki altın hairline etiket. */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .eyebrow::before {
+    content: '';
+    inline-size: 2rem;
+    block-size: 1px;
+    background-color: currentColor;
+    opacity: 0.6;
+  }
+
+  .prose-lede {
+    font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.3125rem);
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  /*
+   * Görünüm alanına girince yumuşak yükselme.
+   * Başlangıç gizliliği yalnızca `html.js` altında geçerlidir: JS çalışmazsa
+   * `js` sınıfı hiç eklenmez ve içerik normal şekilde görünür kalır.
+   */
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 0.5s var(--ease-out-soft),
+      transform 0.5s var(--ease-out-soft);
+  }
+
+  html.js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* RTL'de hairline ve ok yönlerini çevir. */
+[dir='rtl'] .flip-rtl {
+  transform: scaleX(-1);
+}

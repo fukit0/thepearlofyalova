@@ -1,0 +1,28 @@
+---
+interface Props {
+  id?: string;
+  tone?: 'canvas' | 'sand' | 'deep';
+  class?: string;
+  width?: 'default' | 'wide' | 'narrow';
+}
+
+const { id, tone = 'canvas', class: className = '', width = 'default' } = Astro.props;
+
+const TONES = {
+  canvas: 'bg-canvas text-ink',
+  sand: 'bg-sand/45 text-ink',
+  deep: 'bg-deep text-canvas',
+} as const;
+
+const WIDTHS = {
+  narrow: 'max-w-3xl',
+  default: 'max-w-6xl',
+  wide: 'max-w-7xl',
+} as const;
+---
+
+<section id={id} class:list={['py-20 sm:py-28', TONES[tone], className]}>
+  <div class:list={['mx-auto px-5 sm:px-8', WIDTHS[width]]}>
+    <slot />
+  </div>
+</section>

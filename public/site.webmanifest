@@ -1,0 +1,9 @@
+{
+  "name": "The Pearl of Yalova",
+  "short_name": "Pearl of Yalova",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f4",
+  "theme_color": "#0f3d3e",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

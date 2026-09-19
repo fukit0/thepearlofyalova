@@ -1,0 +1,231 @@
+{
+  "dis-mekan": [
+    {
+      "slug": "3d-360-location-1",
+      "source": "3d_360__location_1",
+      "base": "/tours/dis-mekan/3d-360-location-1",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "3d-360-location-10",
+      "source": "3d_360__location_10",
+      "base": "/tours/dis-mekan/3d-360-location-10",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "3d-360-location-2",
+      "source": "3d_360__location_2",
+      "base": "/tours/dis-mekan/3d-360-location-2",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "3d-360-location-3",
+      "source": "3d_360__location_3",
+      "base": "/tours/dis-mekan/3d-360-location-3",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "3d-360-location-4",
+      "source": "3d_360__location_4",
+      "base": "/tours/dis-mekan/3d-360-location-4",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "3d-360-location-7",
+      "source": "3d_360__location_7",
+      "base": "/tours/dis-mekan/3d-360-location-7",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "3d-360-location-8",
+      "source": "3d_360__location_8",
+      "base": "/tours/dis-mekan/3d-360-location-8",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "3d-360-location-9",
+      "source": "3d_360__location_9",
+      "base": "/tours/dis-mekan/3d-360-location-9",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    }
+  ],
+  "ic-mekan": [
+    {
+      "slug": "banyo-interactive-lightmix",
+      "source": "banyo_interactive lightmix",
+      "base": "/tours/ic-mekan/banyo-interactive-lightmix",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "koridor-interactive-lightmix",
+      "source": "koridor_interactive lightmix",
+      "base": "/tours/ic-mekan/koridor-interactive-lightmix",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "mutfak-interactive-lightmix",
+      "source": "mutfak_interactive lightmix",
+      "base": "/tours/ic-mekan/mutfak-interactive-lightmix",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "oda-interactive-lightmix",
+      "source": "oda_interactive lightmix",
+      "base": "/tours/ic-mekan/oda-interactive-lightmix",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "yatakodasi-interactive-lightmix",
+      "source": "yatakodasi_interactive lightmix",
+      "base": "/tours/ic-mekan/yatakodasi-interactive-lightmix",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "yatakodasibanyo-interactive-lightmix",
+      "source": "yatakodasibanyo_interactive lightmix",
+      "base": "/tours/ic-mekan/yatakodasibanyo-interactive-lightmix",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    },
+    {
+      "slug": "yeni-salon",
+      "source": "yeni_salon",
+      "base": "/tours/ic-mekan/yeni-salon",
+      "faces": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "up",
+        "down"
+      ],
+      "faceSize": 1536,
+      "hasThumb": true
+    }
+  ]
+}

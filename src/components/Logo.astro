@@ -1,0 +1,35 @@
+---
+import ShellMark from './ShellMark.astro';
+
+interface Props {
+  /** `auto`, üst bardaki `data-stuck` durumuna göre renk değiştirir. */
+  tone?: 'light' | 'dark' | 'auto';
+  class?: string;
+}
+
+const { tone = 'dark', class: className = '' } = Astro.props;
+
+const WORDMARK = {
+  light: 'text-canvas',
+  dark: 'text-deep',
+  auto: 'text-canvas [[data-stuck=true]_&]:text-deep',
+} as const;
+
+const ACCENT = {
+  light: 'text-gold-300',
+  dark: 'text-gold',
+  auto: 'text-gold-300 [[data-stuck=true]_&]:text-gold',
+} as const;
+---
+
+<span class:list={['flex items-center gap-3', WORDMARK[tone], className]}>
+  <ShellMark class:list={['w-8 shrink-0 sm:w-9', ACCENT[tone]]} />
+  <span class="flex flex-col leading-none">
+    <span class="font-[family-name:var(--font-display)] text-[1.0625rem] tracking-[0.18em] uppercase sm:text-lg">
+      The Pearl
+    </span>
+    <span class:list={['mt-1 text-[0.5625rem] font-medium tracking-[0.38em] uppercase', ACCENT[tone]]}>
+      of Yalova
+    </span>
+  </span>
+</span>

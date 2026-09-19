@@ -1,0 +1,166 @@
+---
+import { getDictionary } from '../i18n';
+import type { Locale } from '../i18n';
+import { scenesOf, cubeMapFor, thumbFor } from '../lib/tours';
+
+interface Props {
+  locale: Locale;
+  tourId: string;
+}
+
+const { locale, tourId } = Astro.props;
+const dict = getDictionary(locale);
+const scenes = scenesOf(tourId);
+
+/** Görüntüleyiciye verilecek yapılandırma build sırasında hazırlanır. */
+const payload = scenes.map((scene) => ({
+  slug: scene.slug,
+  title: dict.tourScenes[scene.slug] ?? scene.slug,
+  cubeMap: cubeMapFor(scene),
+}));
+---
+
+{
+  payload.length > 0 && (
+    <div data-tour data-scenes={JSON.stringify(payload)} class="flex flex-col gap-4">
+      <div class="relative aspect-4/3 overflow-hidden rounded-sm bg-ink sm:aspect-16/9">
+        <div data-tour-viewer class="absolute inset-0"></div>
+        <p
+          data-tour-title
+          class="pointer-events-none absolute start-4 top-4 rounded-full bg-ink/65 px-4 py-2 text-xs font-medium tracking-wide text-canvas backdrop-blur-sm"
+        >
+          {payload[0].title}
+        </p>
+      </div>
+
+      <ul class="flex snap-x gap-3 overflow-x-auto pb-2">
+        {scenes.map((scene, index) => {
+          const thumb = thumbFor(scene);
+          return (
+            <li class="shrink-0 snap-start">
+              <button
+                type="button"
+                data-tour-scene={scene.slug}
+                aria-pressed={index === 0 ? 'true' : 'false'}
+                class="group flex w-32 flex-col gap-2 text-start sm:w-40"
+              >
+                <span class="relative block aspect-4/3 overflow-hidden rounded-sm bg-sand ring-2 ring-transparent transition-[box-shadow] group-aria-pressed:ring-gold">
+                  {thumb && (
+                    <img
+                      src={thumb}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      width="480"
+                      height="360"
+                      class="h-full w-full object-cover"
+                    />
+                  )}
+                </span>
+                <span class="text-xs leading-snug text-muted group-aria-pressed:font-medium group-aria-pressed:text-deep">
+                  {dict.tourScenes[scene.slug] ?? scene.slug}
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  )
+}
+
+<script>
+  interface ScenePayload {
+    slug: string;
+    title: string;
+    cubeMap: string[];
+  }
+
+  declare global {
+    interface Window {
+      pannellum?: { viewer: (target: HTMLElement, config: Record<string, unknown>) => unknown };
+    }
+  }
+
+  /** Sayfada birden fazla tur olabilir; her biri kendi görüntüleyicisini kurar. */
+  const setUpTour = (root: HTMLElement) => {
+    const scenes: ScenePayload[] = JSON.parse(root.dataset.scenes ?? '[]');
+    if (scenes.length === 0) return;
+
+    const target = root.querySelector<HTMLElement>('[data-tour-viewer]');
+    const title = root.querySelector<HTMLElement>('[data-tour-title]');
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-tour-scene]')];
+
+    let viewer: { destroy?: () => void } | null = null;
+
+    const show = (slug: string) => {
+      const scene = scenes.find((candidate) => candidate.slug === slug);
+      if (!scene || !target || !window.pannellum) return;
+
+      viewer?.destroy?.();
+      viewer = window.pannellum.viewer(target, {
+        type: 'cubemap',
+        cubeMap: scene.cubeMap,
+        autoLoad: true,
+        showZoomCtrl: true,
+        showFullscreenCtrl: true,
+        keyboardZoom: false,
+        hfov: 100,
+        minHfov: 45,
+        maxHfov: 120,
+      }) as { destroy?: () => void };
+
+      if (title) title.textContent = scene.title;
+      for (const button of buttons) {
+        button.setAttribute('aria-pressed', String(button.dataset.tourScene === slug));
+      }
+    };
+
+    for (const button of buttons) {
+      button.addEventListener('click', () => show(button.dataset.tourScene ?? ''));
+    }
+
+    /**
+     * Pannellum ve WebGL bağlamı ağırdır: görüntüleyici yalnızca bölüm ekrana
+     * yaklaştığında yüklenir, sayfanın ilk açılışını yavaşlatmaz.
+     */
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        void loadPannellum()
+          .then(() => show(scenes[0].slug))
+          .catch(() => {
+            if (title) title.textContent = '360°';
+          });
+      },
+      { rootMargin: '200px' },
+    );
+    observer.observe(root);
+  };
+
+  /** Kütüphane sayfada bir kez yüklenir, sonraki turlar aynı sözü paylaşır. */
+  let pannellumPromise: Promise<void> | null = null;
+
+  const loadPannellum = (): Promise<void> => {
+    if (window.pannellum) return Promise.resolve();
+    if (pannellumPromise) return pannellumPromise;
+
+    pannellumPromise = new Promise((resolve, reject) => {
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/vendor/pannellum/pannellum.css';
+      document.head.append(style);
+
+      const script = document.createElement('script');
+      script.src = '/vendor/pannellum/pannellum.js';
+      script.addEventListener('load', () => resolve());
+      script.addEventListener('error', () => reject(new Error('pannellum yüklenemedi')));
+      document.head.append(script);
+    });
+
+    return pannellumPromise;
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-tour]').forEach(setUpTour);
+</script>

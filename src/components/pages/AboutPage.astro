@@ -1,0 +1,36 @@
+---
+import Hero from '../Hero.astro';
+import Section from '../Section.astro';
+import StatBand from '../StatBand.astro';
+import Button from '../Button.astro';
+import { getDictionary } from '../../i18n';
+import type { Locale } from '../../i18n';
+import { BRAND } from '../../data/project';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const about = dict.about;
+---
+
+<Hero
+  media="exterior/facade-corner"
+  alt={dict.media['exterior/facade-corner']}
+  eyebrow={about.heroEyebrow}
+  title={about.heroTitle}
+  lede={about.heroLede}
+/>
+
+<StatBand stats={about.stats} />
+
+<Section width="narrow">
+  <div class="reveal flex flex-col gap-6">
+    {about.body.map((paragraph) => <p class="prose-lede">{paragraph}</p>)}
+  </div>
+  <div class="mt-10">
+    <Button href={BRAND.developerUrl} variant="ghost" external>{about.siteLinkLabel}</Button>
+  </div>
+</Section>

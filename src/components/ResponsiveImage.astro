@@ -1,0 +1,53 @@
+---
+import { getMedia, srcSetFor, largestSrc } from '../lib/media';
+
+interface Props {
+  /** Medya manifest anahtarı, örn. "exterior/pool". */
+  media: string;
+  alt: string;
+  /** CSS `sizes` — tarayıcının doğru varyantı seçebilmesi için gerçekçi olmalı. */
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  /** Kapsayıcıyı doldurur; ebeveynin `position: relative` olması gerekir. */
+  fill?: boolean;
+  aspect?: string;
+}
+
+const {
+  media,
+  alt,
+  sizes = '100vw',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  class: className = '',
+  fill = false,
+  aspect,
+} = Astro.props;
+
+const entry = getMedia(media);
+const style = [
+  `background-image:url(${entry.lqip})`,
+  'background-size:cover',
+  'background-position:center',
+  aspect ? `aspect-ratio:${aspect}` : '',
+]
+  .filter(Boolean)
+  .join(';');
+---
+
+<img
+  src={largestSrc(entry)}
+  srcset={srcSetFor(entry)}
+  sizes={sizes}
+  width={entry.width}
+  height={entry.height}
+  alt={alt}
+  loading={loading}
+  fetchpriority={fetchpriority}
+  decoding={loading === 'eager' ? 'sync' : 'async'}
+  style={style}
+  class:list={[fill ? 'absolute inset-0 h-full w-full object-cover' : 'h-auto w-full', className]}
+  onload="this.style.backgroundImage='none'"
+/>

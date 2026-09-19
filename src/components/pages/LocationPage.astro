@@ -1,0 +1,69 @@
+---
+import Hero from '../Hero.astro';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import Button from '../Button.astro';
+import ResponsiveImage from '../ResponsiveImage.astro';
+import { getDictionary } from '../../i18n';
+import type { Locale } from '../../i18n';
+import { CONTACT } from '../../data/project';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const location = dict.location;
+---
+
+<Hero
+  media="exterior/aerial-top"
+  alt={dict.media['exterior/aerial-top']}
+  eyebrow={location.heroEyebrow}
+  title={location.heroTitle}
+  lede={location.heroLede}
+/>
+
+<Section>
+  <div class="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
+    <figure class="reveal flex flex-col gap-4">
+      <div class="overflow-hidden rounded-sm border border-sand-300 bg-white p-4 sm:p-6">
+        <ResponsiveImage
+          media="map/ulasim"
+          alt={dict.media['map/ulasim']}
+          sizes="(min-width:1024px) 58vw, 92vw"
+        />
+      </div>
+      <figcaption class="text-sm leading-relaxed text-muted">{location.mapCaption}</figcaption>
+    </figure>
+
+    <div class="reveal flex flex-col gap-8">
+      <div>
+        <h2 class="text-2xl text-deep sm:text-3xl">{location.distancesTitle}</h2>
+        <dl class="mt-6 flex flex-col">
+          {
+            location.distances.map((item) => (
+              <div class="flex items-baseline justify-between gap-6 border-b border-sand-300 py-4">
+                <dt class="text-sm text-muted">{item.place}</dt>
+                <dd class="shrink-0 font-[family-name:var(--font-display)] text-lg text-deep">
+                  {item.value}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+      <Button href={CONTACT.site.mapsUrl} variant="ghost" external class="self-start">
+        {dict.actions.directions}
+      </Button>
+    </div>
+  </div>
+</Section>
+
+<Section tone="sand" width="narrow">
+  <SectionHeading title={location.cityTitle} />
+  <div class="reveal mt-6 flex flex-col gap-5">
+    {location.cityBody.map((paragraph) => <p class="prose-lede">{paragraph}</p>)}
+  </div>
+</Section>

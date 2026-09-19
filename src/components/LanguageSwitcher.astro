@@ -1,0 +1,48 @@
+---
+import { alternatesFor } from '../i18n';
+import type { Locale, PageKey } from '../i18n';
+
+interface Props {
+  page: PageKey;
+  current: Locale;
+  /** `auto`, üst bardaki `data-stuck` durumuna göre renk değiştirir. */
+  tone?: 'light' | 'dark' | 'auto';
+  label: string;
+}
+
+const { page, current, tone = 'dark', label } = Astro.props;
+const alternates = alternatesFor(page);
+
+const IDLE = {
+  light: 'text-canvas/60 hover:text-canvas',
+  dark: 'text-muted hover:text-deep',
+  auto: 'text-canvas/60 hover:text-canvas [[data-stuck=true]_&]:text-muted [[data-stuck=true]_&]:hover:text-deep',
+} as const;
+
+const ACTIVE = {
+  light: 'bg-canvas/15 text-canvas',
+  dark: 'bg-deep/10 text-deep',
+  auto: 'bg-canvas/15 text-canvas [[data-stuck=true]_&]:bg-deep/10 [[data-stuck=true]_&]:text-deep',
+} as const;
+---
+
+<nav aria-label={label} class="flex items-center gap-0.5">
+  {
+    alternates.map(({ locale, path, label: name }) => (
+      <a
+        href={path}
+        hreflang={locale}
+        lang={locale}
+        title={name}
+        aria-current={locale === current ? 'true' : undefined}
+        class:list={[
+          'rounded-full px-2 py-1 text-[0.6875rem] font-semibold tracking-[0.12em] uppercase transition-colors',
+          IDLE[tone],
+          locale === current && ACTIVE[tone],
+        ]}
+      >
+        {locale}
+      </a>
+    ))
+  }
+</nav>

@@ -1,0 +1,254 @@
+---
+import { getDictionary } from '../i18n';
+import type { Locale } from '../i18n';
+import { BLOCK_IDS, UNITS, planMediaKey } from '../lib/units';
+import { getMedia, largestSrc, srcSetFor } from '../lib/media';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const labels = dict.residences;
+
+/** Tüm kombinasyonlar build sırasında hazırlanır; tarayıcıda yalnızca seçim yapılır. */
+const options = UNITS.flatMap((unit) =>
+  unit.floors.map((floor) => {
+    const entry = getMedia(planMediaKey(unit.block, unit.position, floor.slug));
+    return {
+      block: unit.block,
+      position: unit.position,
+      floor: floor.slug,
+      layout: floor.layout,
+      areaM2: floor.areaM2,
+      src: largestSrc(entry),
+      srcset: srcSetFor(entry),
+      width: entry.width,
+      height: entry.height,
+    };
+  }),
+);
+
+const first = options[0];
+const positionIds = [...new Set(UNITS.map((unit) => unit.position))];
+const floorIds = [...new Set(UNITS.flatMap((unit) => unit.floors.map((floor) => floor.slug)))];
+---
+
+<div data-explorer data-options={JSON.stringify(options)} class="grid gap-10 lg:grid-cols-[22rem_1fr] lg:gap-14">
+  <div class="flex flex-col gap-8">
+    <fieldset class="flex flex-col gap-3">
+      <legend class="eyebrow mb-3">{labels.blockLabel}</legend>
+      <div class="flex gap-2">
+        {
+          BLOCK_IDS.map((block) => (
+            <button
+              type="button"
+              data-block={block}
+              aria-pressed={block === first.block ? 'true' : 'false'}
+              class="h-12 flex-1 rounded-sm border border-deep/20 text-sm font-semibold tracking-wide text-muted transition-colors aria-pressed:border-deep aria-pressed:bg-deep aria-pressed:text-canvas"
+            >
+              {block}
+            </button>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <fieldset class="flex flex-col gap-3">
+      <legend class="eyebrow mb-3">{labels.positionLabel}</legend>
+      <div class="grid grid-cols-2 gap-2">
+        {
+          positionIds.map((position) => (
+            <button
+              type="button"
+              data-position={position}
+              aria-pressed={position === first.position ? 'true' : 'false'}
+              class="rounded-sm border border-deep/15 px-3 py-2.5 text-[0.8125rem] text-muted transition-colors aria-pressed:border-deep aria-pressed:bg-deep/5 aria-pressed:text-deep aria-pressed:font-medium disabled:opacity-35"
+            >
+              {labels.positions[position] ?? position}
+            </button>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <fieldset class="flex flex-col gap-3">
+      <legend class="eyebrow mb-3">{labels.floorLabel}</legend>
+      <div class="flex flex-col gap-2">
+        {
+          floorIds.map((floor) => (
+            <button
+              type="button"
+              data-floor={floor}
+              aria-pressed={floor === first.floor ? 'true' : 'false'}
+              class="flex items-center justify-between rounded-sm border border-deep/15 px-4 py-3 text-sm text-muted transition-colors aria-pressed:border-deep aria-pressed:bg-deep aria-pressed:text-canvas disabled:opacity-35"
+            >
+              <span>{labels.floors[floor] ?? floor}</span>
+              <span data-floor-meta={floor} class="text-xs opacity-70"></span>
+            </button>
+          ))
+        }
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="flex flex-col gap-6">
+    <div class="flex flex-wrap items-end justify-between gap-6 border-b border-sand-300 pb-5">
+      <div class="flex items-baseline gap-3">
+        <span data-out-layout class="font-[family-name:var(--font-display)] text-4xl text-deep">
+          {first.layout}
+        </span>
+        <span class="text-sm text-muted">
+          {labels.netAreaLabel}
+          <b data-out-area class="ms-1.5 font-semibold text-ink">{first.areaM2} m²</b>
+        </span>
+      </div>
+      <p data-out-context class="text-sm text-muted"></p>
+    </div>
+
+    <figure class="flex flex-col gap-3">
+      <div class="overflow-hidden rounded-sm border border-sand-300 bg-white p-3 sm:p-6">
+        <img
+          data-out-plan
+          src={first.src}
+          srcset={first.srcset}
+          sizes="(min-width:1024px) 55vw, 92vw"
+          width={first.width}
+          height={first.height}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          class="mx-auto h-auto w-full max-w-2xl"
+        />
+      </div>
+      <figcaption class="text-xs text-muted">{labels.noteBody}</figcaption>
+    </figure>
+  </div>
+</div>
+
+<script>
+  interface PlanOption {
+    block: string;
+    position: string;
+    floor: string;
+    layout: string;
+    areaM2: number;
+    src: string;
+    srcset: string;
+    width: number;
+    height: number;
+  }
+
+  const root = document.querySelector<HTMLElement>('[data-explorer]');
+  if (root) {
+    const options: PlanOption[] = JSON.parse(root.dataset.options ?? '[]');
+    const planImage = root.querySelector<HTMLImageElement>('[data-out-plan]');
+    const outLayout = root.querySelector<HTMLElement>('[data-out-layout]');
+    const outArea = root.querySelector<HTMLElement>('[data-out-area]');
+    const outContext = root.querySelector<HTMLElement>('[data-out-context]');
+
+    const groupButtons = (attribute: string) => [
+      ...root.querySelectorAll<HTMLButtonElement>(`[data-${attribute}]:not([data-${attribute}-meta])`),
+    ];
+
+    const blockButtons = groupButtons('block');
+    const positionButtons = groupButtons('position');
+    const floorButtons = groupButtons('floor');
+
+    let selection = { block: options[0].block, position: options[0].position, floor: options[0].floor };
+
+    const labelOf = (button: HTMLButtonElement) =>
+      button.querySelector('span')?.textContent?.trim() ?? button.textContent?.trim() ?? '';
+
+    const findOption = (): PlanOption | undefined =>
+      options.find(
+        (option) =>
+          option.block === selection.block &&
+          option.position === selection.position &&
+          option.floor === selection.floor,
+      );
+
+    const syncPressed = (buttons: HTMLButtonElement[], key: 'block' | 'position' | 'floor') => {
+      for (const button of buttons) {
+        button.setAttribute('aria-pressed', String(button.dataset[key] === selection[key]));
+      }
+    };
+
+    /** Seçilen blokta olmayan konum/kat kombinasyonları tıklanamaz kalır. */
+    const syncAvailability = () => {
+      for (const button of positionButtons) {
+        const available = options.some(
+          (option) => option.block === selection.block && option.position === button.dataset.position,
+        );
+        button.disabled = !available;
+      }
+
+      for (const button of floorButtons) {
+        const match = options.find(
+          (option) =>
+            option.block === selection.block &&
+            option.position === selection.position &&
+            option.floor === button.dataset.floor,
+        );
+        button.disabled = !match;
+        const meta = button.querySelector<HTMLElement>('[data-floor-meta]');
+        if (meta) meta.textContent = match ? `${match.layout} · ${match.areaM2} m²` : '';
+      }
+    };
+
+    const render = () => {
+      const option = findOption();
+      if (!option || !planImage) return;
+
+      planImage.src = option.src;
+      planImage.srcset = option.srcset;
+      planImage.width = option.width;
+      planImage.height = option.height;
+
+      const positionLabel = labelOf(
+        positionButtons.find((button) => button.dataset.position === option.position)!,
+      );
+      const floorLabel = labelOf(floorButtons.find((button) => button.dataset.floor === option.floor)!);
+
+      planImage.alt = `${option.block} · ${positionLabel} · ${floorLabel} — ${option.layout}, ${option.areaM2} m²`;
+      if (outLayout) outLayout.textContent = option.layout;
+      if (outArea) outArea.textContent = `${option.areaM2} m²`;
+      if (outContext) outContext.textContent = `${option.block} · ${positionLabel} · ${floorLabel}`;
+    };
+
+    /** Blok değişince mevcut konum/kat geçersiz kalabilir; ilk geçerliye düşülür. */
+    const repair = () => {
+      const inBlock = options.filter((option) => option.block === selection.block);
+      if (!inBlock.some((option) => option.position === selection.position)) {
+        selection = { ...selection, position: inBlock[0].position };
+      }
+      const inPosition = inBlock.filter((option) => option.position === selection.position);
+      if (!inPosition.some((option) => option.floor === selection.floor)) {
+        selection = { ...selection, floor: inPosition[0].floor };
+      }
+    };
+
+    const update = (next: Partial<typeof selection>) => {
+      selection = { ...selection, ...next };
+      repair();
+      syncPressed(blockButtons, 'block');
+      syncPressed(positionButtons, 'position');
+      syncPressed(floorButtons, 'floor');
+      syncAvailability();
+      render();
+    };
+
+    for (const button of blockButtons) {
+      button.addEventListener('click', () => update({ block: button.dataset.block! }));
+    }
+    for (const button of positionButtons) {
+      button.addEventListener('click', () => update({ position: button.dataset.position! }));
+    }
+    for (const button of floorButtons) {
+      button.addEventListener('click', () => update({ floor: button.dataset.floor! }));
+    }
+
+    update({});
+  }
+</script>

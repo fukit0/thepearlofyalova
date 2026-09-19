@@ -1,0 +1,848 @@
+[
+  {
+    "block": "A",
+    "position": "on-sag",
+    "positionTr": "Ön Sağ",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 102,
+        "planImage": "images/kat-plani_new/ablok/ablokonsag/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsag/ablokonsag_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1.Kat",
+        "layout": "2+1",
+        "areaM2": 102,
+        "planImage": "images/kat-plani_new/ablok/ablokonsag/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsag/ablokonsag_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 112,
+        "planImage": "images/kat-plani_new/ablok/ablokonsag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsag/ablokonsag_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 112,
+        "planImage": "images/kat-plani_new/ablok/ablokonsag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsag/ablokonsag_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "3+1",
+        "areaM2": 216,
+        "planImage": "images/kat-plani_new/ablok/ablokonsag/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsag/ablokonsag_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "A",
+    "position": "on-sol",
+    "positionTr": "Ön Sol",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 90,
+        "planImage": "images/kat-plani_new/ablok/ablokonsol/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsol/ablokonsol_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 90,
+        "planImage": "images/kat-plani_new/ablok/ablokonsol/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsol/ablokonsol_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 113,
+        "planImage": "images/kat-plani_new/ablok/ablokonsol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsol/ablokonsol_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 113,
+        "planImage": "images/kat-plani_new/ablok/ablokonsol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsol/ablokonsol_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "3+1",
+        "areaM2": 216,
+        "planImage": "images/kat-plani_new/ablok/ablokonsol/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonsol/ablokonsol_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "A",
+    "position": "on-orta",
+    "positionTr": "Ön Orta",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokonorta/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonorta/ablokonorta_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1.Kat",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokonorta/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonorta/ablokonorta_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokonorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonorta/ablokonorta_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokonorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonorta/ablokonorta_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 212,
+        "planImage": "images/kat-plani_new/ablok/ablokonorta/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokonorta/ablokonorta_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "A",
+    "position": "arka-sag",
+    "positionTr": "Arka Sağ",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasag/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasag/ablokarkasag_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasag/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasag/ablokarkasag_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasag/ablokarkasag_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasag/ablokarkasag_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "3+1",
+        "areaM2": 220,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasag/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasag/ablokarkasag_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "A",
+    "position": "arka-sol",
+    "positionTr": "Arka Sol",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 93,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasol/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasol/ablokarkasol_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 93,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasol/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasol/ablokarkasol_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasol/ablokarkasol_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasol/ablokarkasol_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "3+1",
+        "areaM2": 223,
+        "planImage": "images/kat-plani_new/ablok/ablokarkasol/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkasol/ablokarkasol_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "A",
+    "position": "arka-orta",
+    "positionTr": "Arka Orta",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokarkaorta/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkaorta/ablokarkaorta_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1.Kat",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokarkaorta/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkaorta/ablokarkaorta_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokarkaorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkaorta/ablokarkaorta_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 105,
+        "planImage": "images/kat-plani_new/ablok/ablokarkaorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkaorta/ablokarkaorta_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 223,
+        "planImage": "images/kat-plani_new/ablok/ablokarkaorta/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/ablok/ablokarkaorta/ablokarkaorta_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "B",
+    "position": "on-sag",
+    "positionTr": "Ön Sağ",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/bblok/bblokonsag/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsag/bblokonsag_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/bblok/bblokonsag/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsag/bblokonsag_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/bblok/bblokonsag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsag/bblokonsag_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/bblok/bblokonsag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsag/bblokonsag_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "3+1",
+        "areaM2": 208,
+        "planImage": "images/kat-plani_new/bblok/bblokonsag/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsag/bblokonsag_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "B",
+    "position": "on-sol",
+    "positionTr": "Ön Sol",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "1+1",
+        "areaM2": 85,
+        "planImage": "images/kat-plani_new/bblok/bblokonsol/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsol/bblokonsol_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/bblok/bblokonsol/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsol/bblokonsol_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/bblok/bblokonsol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsol/bblokonsol_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/bblok/bblokonsol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsol/bblokonsol_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "3+1",
+        "areaM2": 208,
+        "planImage": "images/kat-plani_new/bblok/bblokonsol/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonsol/bblokonsol_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "B",
+    "position": "on-orta",
+    "positionTr": "Ön Orta",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 98,
+        "planImage": "images/kat-plani_new/bblok/bblokonorta/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonorta/bblokonorta_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 98,
+        "planImage": "images/kat-plani_new/bblok/bblokonorta/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonorta/bblokonorta_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 103,
+        "planImage": "images/kat-plani_new/bblok/bblokonorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonorta/bblokonorta_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 103,
+        "planImage": "images/kat-plani_new/bblok/bblokonorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonorta/bblokonorta_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 206,
+        "planImage": "images/kat-plani_new/bblok/bblokonorta/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokonorta/bblokonorta_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "B",
+    "position": "arka-sag",
+    "positionTr": "Arka Sağ",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasag/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasag/bblokarkasag_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasag/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasag/bblokarkasag_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasag/bblokarkasag_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasag/bblokarkasag_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 208,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasag/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasag/bblokarkasag_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "B",
+    "position": "arka-sol",
+    "positionTr": "Arka Sol",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "1+1",
+        "areaM2": 85,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasol/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasol/bblokarkasol_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasol/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasol/bblokarkasol_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasol/bblokarkasol_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 110,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasol/bblokarkasol_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 208,
+        "planImage": "images/kat-plani_new/bblok/bblokarkasol/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkasol/bblokarkasol_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "B",
+    "position": "arka-orta",
+    "positionTr": "Arka Orta",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 96,
+        "planImage": "images/kat-plani_new/bblok/bblokarkaorta/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkaorta/bblokarkaorta_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 96,
+        "planImage": "images/kat-plani_new/bblok/bblokarkaorta/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkaorta/bblokarkaorta_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 101,
+        "planImage": "images/kat-plani_new/bblok/bblokarkaorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkaorta/bblokarkaorta_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 101,
+        "planImage": "images/kat-plani_new/bblok/bblokarkaorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkaorta/bblokarkaorta_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 202,
+        "planImage": "images/kat-plani_new/bblok/bblokarkaorta/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/bblok/bblokarkaorta/bblokarkaorta_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "C",
+    "position": "on-sag",
+    "positionTr": "Ön Sağ",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 96,
+        "planImage": "images/kat-plani_new/cblok/cblokonsag/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsag/cblokonsag_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 96,
+        "planImage": "images/kat-plani_new/cblok/cblokonsag/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsag/cblokonsag_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 126,
+        "planImage": "images/kat-plani_new/cblok/cblokonsag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsag/cblokonsag_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 126,
+        "planImage": "images/kat-plani_new/cblok/cblokonsag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsag/cblokonsag_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 238,
+        "planImage": "images/kat-plani_new/cblok/cblokonsag/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsag/cblokonsag_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "C",
+    "position": "on-sol",
+    "positionTr": "Ön Sol",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 95,
+        "planImage": "images/kat-plani_new/cblok/cblokonsol/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsol/cblokonsol_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 95,
+        "planImage": "images/kat-plani_new/cblok/cblokonsol/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsol/cblokonsol_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 126,
+        "planImage": "images/kat-plani_new/cblok/cblokonsol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsol/cblokonsol_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 126,
+        "planImage": "images/kat-plani_new/cblok/cblokonsol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsol/cblokonsol_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 238,
+        "planImage": "images/kat-plani_new/cblok/cblokonsol/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonsol/cblokonsol_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "C",
+    "position": "on-orta",
+    "positionTr": "Ön Orta",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 88,
+        "planImage": "images/kat-plani_new/cblok/cblokonorta/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonorta/cblokonorta_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 88,
+        "planImage": "images/kat-plani_new/cblok/cblokonorta/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonorta/cblokonorta_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 101,
+        "planImage": "images/kat-plani_new/cblok/cblokonorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonorta/cblokonorta_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 101,
+        "planImage": "images/kat-plani_new/cblok/cblokonorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonorta/cblokonorta_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 189,
+        "planImage": "images/kat-plani_new/cblok/cblokonorta/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokonorta/cblokonorta_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "C",
+    "position": "arka-sag",
+    "positionTr": "Arka Sağ",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 96,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasag/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasag/cblokarkasag_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 96,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasag/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasag/cblokarkasag_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 126,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasag/cblokarkasag_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 126,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasag/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasag/cblokarkasag_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 238,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasag/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasag/cblokarkasag_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "C",
+    "position": "arka-sol",
+    "positionTr": "Arka Sol",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 95,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasol/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasol/cblokarkasol_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 95,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasol/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasol/cblokarkasol_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2.Kat",
+        "layout": "2+1",
+        "areaM2": 101,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasol/cblokarkasol_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3.Kat",
+        "layout": "2+1",
+        "areaM2": 101,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasol/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasol/cblokarkasol_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 238,
+        "planImage": "images/kat-plani_new/cblok/cblokarkasol/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkasol/cblokarkasol_4kat_a.png"
+      }
+    ]
+  },
+  {
+    "block": "C",
+    "position": "arka-orta",
+    "positionTr": "Arka Orta",
+    "floors": [
+      {
+        "slug": "zemin",
+        "label": "Zemin",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/cblok/cblokarkaorta/big_zemin.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkaorta/cblokarkaorta_zemin_a.png"
+      },
+      {
+        "slug": "1kat",
+        "label": "1. Kat",
+        "layout": "2+1",
+        "areaM2": 91,
+        "planImage": "images/kat-plani_new/cblok/cblokarkaorta/big_1kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkaorta/cblokarkaorta_1kat_a.png"
+      },
+      {
+        "slug": "2kat",
+        "label": "2. Kat",
+        "layout": "2+1",
+        "areaM2": 98,
+        "planImage": "images/kat-plani_new/cblok/cblokarkaorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkaorta/cblokarkaorta_2_3kat_a.png"
+      },
+      {
+        "slug": "3kat",
+        "label": "3. Kat",
+        "layout": "2+1",
+        "areaM2": 98,
+        "planImage": "images/kat-plani_new/cblok/cblokarkaorta/big_2_3kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkaorta/cblokarkaorta_2_3kat_a.png"
+      },
+      {
+        "slug": "4kat",
+        "label": "4.Kat",
+        "layout": "4+2",
+        "areaM2": 189,
+        "planImage": "images/kat-plani_new/cblok/cblokarkaorta/big_4kat.jpg",
+        "planThumb": "images/kat-plani_new/cblok/cblokarkaorta/cblokarkaorta_4kat_a.png"
+      }
+    ]
+  }
+]

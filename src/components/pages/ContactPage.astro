@@ -1,0 +1,84 @@
+---
+import Hero from '../Hero.astro';
+import Section from '../Section.astro';
+import Button from '../Button.astro';
+import { getDictionary } from '../../i18n';
+import type { Locale } from '../../i18n';
+import { CONTACT } from '../../data/project';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const contact = dict.contact;
+
+const CHANNELS = [
+  { label: contact.phoneLabel, value: CONTACT.phoneDisplay, href: CONTACT.phoneHref, external: false },
+  { label: contact.whatsappLabel, value: CONTACT.whatsappDisplay, href: CONTACT.whatsappHref, external: true },
+  { label: contact.emailLabel, value: CONTACT.email, href: CONTACT.emailHref, external: false },
+] as const;
+---
+
+<Hero
+  media="exterior/entrance-door"
+  alt={dict.media['exterior/entrance-door']}
+  eyebrow={contact.heroEyebrow}
+  title={contact.heroTitle}
+  lede={contact.heroLede}
+/>
+
+<Section>
+  <div class="grid gap-12 lg:grid-cols-2 lg:gap-20">
+    <dl class="reveal flex flex-col">
+      {
+        CHANNELS.map((channel) => (
+          <div class="flex flex-col gap-1 border-b border-sand-300 py-6">
+            <dt class="text-[0.6875rem] font-semibold tracking-[0.18em] text-gold uppercase">
+              {channel.label}
+            </dt>
+            <dd>
+              <a
+                href={channel.href}
+                target={channel.external ? '_blank' : undefined}
+                rel={channel.external ? 'noopener noreferrer' : undefined}
+                class="font-[family-name:var(--font-display)] text-2xl text-deep underline-offset-4 transition-colors hover:text-sea hover:underline"
+              >
+                {channel.value}
+              </a>
+            </dd>
+          </div>
+        ))
+      }
+      <div class="flex flex-col gap-1 py-6">
+        <dt class="text-[0.6875rem] font-semibold tracking-[0.18em] text-gold uppercase">
+          {contact.hoursLabel}
+        </dt>
+        <dd class="text-sm text-muted">{contact.hoursValue}</dd>
+      </div>
+    </dl>
+
+    <div class="reveal flex flex-col gap-10">
+      <div>
+        <h2 class="text-xl text-deep">{contact.officeTitle}</h2>
+        <address class="mt-3 text-sm leading-relaxed text-muted not-italic">
+          {CONTACT.office.lines.map((line) => <span class="block">{line}</span>)}
+        </address>
+        <div class="mt-5">
+          <Button href={CONTACT.office.mapsUrl} variant="ghost" external>{dict.actions.directions}</Button>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xl text-deep">{contact.siteTitle}</h2>
+        <address class="mt-3 text-sm leading-relaxed text-muted not-italic">
+          {CONTACT.site.lines.map((line) => <span class="block">{line}</span>)}
+        </address>
+        <div class="mt-5">
+          <Button href={CONTACT.site.mapsUrl} variant="ghost" external>{dict.actions.directions}</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>

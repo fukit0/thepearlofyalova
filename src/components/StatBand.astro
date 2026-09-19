@@ -1,0 +1,38 @@
+---
+import type { Stat } from '../i18n/types';
+
+interface Props {
+  stats: readonly Stat[];
+  tone?: 'sand' | 'deep';
+}
+
+const { stats, tone = 'sand' } = Astro.props;
+const isDeep = tone === 'deep';
+---
+
+<div class:list={['border-y', isDeep ? 'border-canvas/12 bg-deep' : 'border-sand-300/70 bg-sand/50']}>
+  <dl class="mx-auto grid max-w-7xl grid-cols-2 gap-px px-5 sm:px-8 lg:grid-cols-4">
+    {
+      stats.map((stat) => (
+        <div class="reveal flex flex-col gap-1.5 py-8 lg:py-10">
+          <dt
+            class:list={[
+              'order-2 text-[0.6875rem] font-semibold tracking-[0.18em] uppercase',
+              isDeep ? 'text-canvas/50' : 'text-muted',
+            ]}
+          >
+            {stat.label}
+          </dt>
+          <dd
+            class:list={[
+              'order-1 font-[family-name:var(--font-display)] text-2xl sm:text-3xl',
+              isDeep ? 'text-canvas' : 'text-deep',
+            ]}
+          >
+            {stat.value}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</div>

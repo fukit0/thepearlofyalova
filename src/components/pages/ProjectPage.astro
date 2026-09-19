@@ -1,0 +1,97 @@
+---
+import Hero from '../Hero.astro';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import Button from '../Button.astro';
+import ResponsiveImage from '../ResponsiveImage.astro';
+import { getDictionary, pathFor } from '../../i18n';
+import type { Locale } from '../../i18n';
+import { MEASUREMENTS } from '../../data/project';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const project = dict.project;
+---
+
+<Hero
+  media="exterior/aerial-blocks"
+  alt={dict.media['exterior/aerial-blocks']}
+  eyebrow={project.heroEyebrow}
+  title={project.heroTitle}
+  lede={project.heroLede}
+/>
+
+<Section width="wide">
+  <div class="flex flex-col gap-24 sm:gap-32">
+    {
+      project.chapters.map((chapter, index) => (
+        <article id={chapter.id} class="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
+          <div class:list={['reveal', index % 2 === 1 && 'lg:order-2']}>
+            <p class="eyebrow">{chapter.eyebrow}</p>
+            <h2 class="mt-5 text-3xl leading-[1.15] sm:text-4xl">{chapter.title}</h2>
+            {chapter.body.map((paragraph) => (
+              <p class="prose-lede mt-5">{paragraph}</p>
+            ))}
+          </div>
+          <div
+            class:list={[
+              'reveal relative aspect-4/3 overflow-hidden rounded-sm bg-sand',
+              index % 2 === 1 && 'lg:order-1',
+            ]}
+          >
+            <ResponsiveImage
+              media={chapter.image}
+              alt={dict.media[chapter.image] ?? chapter.title}
+              sizes="(min-width:1024px) 48vw, 92vw"
+              fill
+            />
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Section>
+
+<Section tone="deep">
+  <SectionHeading eyebrow={dict.home.measureEyebrow} title={project.measureTitle} tone="light" />
+  <div class="mt-12 grid gap-px bg-canvas/12 lg:grid-cols-2">
+    <div class="flex flex-col gap-4 bg-deep p-8 sm:p-10">
+      <p class="font-[family-name:var(--font-display)] text-5xl text-gold-300">
+        {MEASUREMENTS.pm25.value}
+        <span class="ms-1 text-lg text-canvas/60">{MEASUREMENTS.pm25.unit}</span>
+      </p>
+      <p class="text-sm leading-relaxed text-canvas/70">{project.airBody}</p>
+    </div>
+    <div class="flex flex-col gap-4 bg-deep p-8 sm:p-10">
+      <p class="font-[family-name:var(--font-display)] text-5xl text-gold-300">
+        {MEASUREMENTS.noise.value}
+        <span class="ms-1 text-lg text-canvas/60">{MEASUREMENTS.noise.unit}</span>
+      </p>
+      <p class="text-sm leading-relaxed text-canvas/70">{project.noiseBody}</p>
+    </div>
+  </div>
+</Section>
+
+<Section tone="sand">
+  <SectionHeading title={project.specsTitle} />
+  <dl class="mt-12 grid gap-px bg-sand-300/70 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      project.specs.map((spec) => (
+        <div class="reveal flex flex-col gap-2 bg-sand/50 p-8">
+          <dt class="text-[0.6875rem] font-semibold tracking-[0.18em] text-gold uppercase">
+            {spec.title}
+          </dt>
+          <dd class="text-sm leading-relaxed text-muted">{spec.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  <div class="mt-12 flex flex-wrap gap-3">
+    <Button href={pathFor('residences', locale)}>{dict.actions.viewPlans}</Button>
+    <Button href={pathFor('gallery', locale)} variant="ghost">{dict.actions.viewGallery}</Button>
+  </div>
+</Section>
