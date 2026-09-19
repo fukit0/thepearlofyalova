@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
-export const SITE_URL = 'https://www.thepearlofyalova.com';
+export const SITE_URL = 'https://www.thepearlofyalova.com.tr';
 
 export default defineConfig({
   site: SITE_URL,
